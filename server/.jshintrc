@@ -1,0 +1,8 @@
+{
+  "esversion": 11,
+  "node": true,
+  "browser": true,
+  "strict": false,
+  "undef": true,
+  "unused": true
+}

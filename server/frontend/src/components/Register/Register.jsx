@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
+import Header from "../Header/Header";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -17,13 +18,27 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    alert("Registration form submitted!");
+    try {
+      const response = await fetch("/djangoapp/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Registration failed");
+      }
+      window.location.assign("/login");
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
     <div className="register-container">
+      <Header />
       <h2>Sign-up</h2>
 
       <form onSubmit={handleSubmit}>

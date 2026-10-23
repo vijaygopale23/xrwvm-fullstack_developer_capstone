@@ -50,6 +50,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+.coverage
 
 # Translations
 *.mo
@@ -107,6 +108,10 @@ celerybeat.pid
 env/
 venv/
 ENV/
+/server/frontend/node_modules/
+/server/frontend/build/
+/server/database/node_modules/
+/server/static/
 env.bak/
 venv.bak/
 
@@ -127,3 +132,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Capstone submission artifacts (generated locally)
+SUBMISSION.md
+/server/django_server
+/server/loginuser
+/server/logoutuser
+/server/getdealerreviews
+/server/getalldealers
+/server/getdealerbyid
+/server/getdealersbyState
+/server/getallcarmakes
+/server/analyzereview
+/server/CICD
+/server/deploymentURL
+/server/.env

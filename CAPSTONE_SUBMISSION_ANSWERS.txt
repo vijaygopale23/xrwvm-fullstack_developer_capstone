@@ -1,0 +1,206 @@
+IBM FULL-STACK CAPSTONE — SUBMISSION ANSWERS
+Prepared: 2026-10-21
+
+READ THIS FIRST
+This answer sheet distinguishes verified local evidence from evidence that still
+requires a live MongoDB/Docker run, a GitHub Actions run, or screenshots/deployment
+from your own account. Do not submit a placeholder as if it were a successful
+output. The code changes in this working tree are not pushed to GitHub yet.
+
+Repository: https://github.com/vijaygopale23/xrwvm-fullstack_developer_capstone
+Local application: http://127.0.0.1:8000
+The dealership API and database require Docker Compose; Docker is not installed
+in the environment used to prepare this file. No deployment URL, Actions run, or
+real browser screenshots were available.
+
+TASK 1 — README project name (1 point)
+Public GitHub URL:
+https://github.com/vijaygopale23/xrwvm-fullstack_developer_capstone/blob/main/README.md
+Project name: IBM Full Stack Application Development Capstone Project
+
+TASK 2 — Django server terminal output (1 point)
+Run this from the repository's server directory in PowerShell:
+python manage.py runserver 127.0.0.1:8000 --noreload 2>&1 | Tee-Object django_server
+
+Verified local server output:
+System check identified no issues (0 silenced).
+Starting development server at http://127.0.0.1:8000/
+[actual runserver output includes its date/time and Django version]
+[21/Oct/2026 18:25:56] "GET / HTTP/1.1" 200 652
+[21/Oct/2026 18:25:57] "GET /djangoapp/get_cars HTTP/1.1" 200 2556
+
+The HTTP 200 request log lines above came from the verified local run. Run the
+command to capture the complete startup banner and current timestamp in the
+django_server file for submission.
+
+TASK 3 — About Us source (3 points)
+Public GitHub URL:
+https://github.com/vijaygopale23/xrwvm-fullstack_developer_capstone/blob/main/server/frontend/static/About.html
+
+TASK 4 — Contact Us source (2 points)
+Public GitHub URL:
+https://github.com/vijaygopale23/xrwvm-fullstack_developer_capstone/blob/main/server/frontend/static/Contact.html
+
+TASK 5 — Login cURL and output (2 points)
+Create an account on your running app first, then replace YOUR_USERNAME and
+YOUR_PASSWORD with that account's credentials. PowerShell example:
+curl.exe --cookie-jar capstone_cookies.txt --request POST "http://127.0.0.1:8000/djangoapp/login" --header "Content-Type: application/json" --data-raw '{"userName":"YOUR_USERNAME","password":"YOUR_PASSWORD"}'
+
+Verified local response shape (the temporary test account has been deleted):
+{"userName":"capstone_local_evidence","firstName":"Local","lastName":"Evidence","status":"Authenticated"}
+
+For your submitted output, use your own existing account and paste the response
+from the command above. Do not submit the temporary example credentials.
+
+TASK 6 — Logout cURL and output (2 points)
+Run after Task 5, keeping the same cookie jar:
+curl.exe --cookie capstone_cookies.txt --cookie-jar capstone_cookies.txt --request GET "http://127.0.0.1:8000/djangoapp/logout"
+
+Verified local response:
+{"status":200,"message":"Logged out"}
+
+TASK 7 — Registration source (1 point)
+Public GitHub URL:
+https://github.com/vijaygopale23/xrwvm-fullstack_developer_capstone/blob/main/server/frontend/src/components/Register/Register.jsx
+
+TASK 8 — Dealer reviews cURL and output (2 points)
+Seeded example dealer ID with a review: 15.
+Command (requires the Compose services to be running):
+curl.exe --include "http://127.0.0.1:8000/djangoapp/reviews/dealer/15"
+
+Status: Not run successfully in this environment; Docker/MongoDB is unavailable.
+Run the command after starting the services and paste its actual JSON response.
+
+TASK 9 — All dealers cURL and output (2 points)
+curl.exe --include "http://127.0.0.1:8000/djangoapp/get_dealers"
+
+Status: Not run successfully in this environment; Docker/MongoDB is unavailable.
+Run the command after starting the services and paste its actual JSON response.
+
+TASK 10 — Dealer details cURL and output (2 points)
+Seeded example dealer ID: 15.
+curl.exe --include "http://127.0.0.1:8000/djangoapp/dealer/15"
+
+Status: Not run successfully in this environment; Docker/MongoDB is unavailable.
+Run the command after starting the services and paste its actual JSON response.
+
+TASK 11 — Kansas dealers cURL and output (2 points)
+The seed data includes one Kansas dealer (Topeka, ID 8).
+curl.exe --include "http://127.0.0.1:8000/djangoapp/get_dealers/Kansas"
+
+Status: Not run successfully in this environment; Docker/MongoDB is unavailable.
+Run the command after starting the services and paste its actual JSON response.
+
+TASK 12 — Admin root login screenshot (2 points)
+Required filename: admin_login.png (or admin_login.jpeg)
+Status: Screenshot not captured. Log into /admin/ as the root superuser in your
+own running app, capture the real browser screen, and save it with this filename.
+Do not use a mockup or a screenshot from another project.
+
+TASK 13 — Admin root logout screenshot (1 point)
+Required filename: admin_logout.png (or admin_logout.jpeg)
+Status: Screenshot not captured. Capture the real Django admin logged-out screen.
+
+TASKS 14 AND 15 — All car makes and models cURL/output (4 points)
+Command:
+curl.exe "http://127.0.0.1:8000/djangoapp/get_cars"
+
+Verified local cURL response (58 unique make/model pairs):
+{"status":200,"CarModels":[{"CarMake":"Audi","CarModel":"A3"},{"CarMake":"Audi","CarModel":"A4"},{"CarMake":"Audi","CarModel":"A5"},{"CarMake":"Audi","CarModel":"A6"},{"CarMake":"Audi","CarModel":"Q3"},{"CarMake":"Audi","CarModel":"Q5"},{"CarMake":"Audi","CarModel":"Q7"},{"CarMake":"Audi","CarModel":"Q8"},{"CarMake":"Audi","CarModel":"S3"},{"CarMake":"Audi","CarModel":"S5"},{"CarMake":"Audi","CarModel":"S7"},{"CarMake":"Audi","CarModel":"TT"},{"CarMake":"Kia","CarModel":"Cadenza"},{"CarMake":"Kia","CarModel":"Forte"},{"CarMake":"Kia","CarModel":"Niro"},{"CarMake":"Kia","CarModel":"Optima"},{"CarMake":"Kia","CarModel":"Rio"},{"CarMake":"Kia","CarModel":"Seltos"},{"CarMake":"Kia","CarModel":"Soul"},{"CarMake":"Kia","CarModel":"Sportage"},{"CarMake":"Kia","CarModel":"Stinger"},{"CarMake":"Kia","CarModel":"Telluride"},{"CarMake":"Mercedes","CarModel":"A-Class"},{"CarMake":"Mercedes","CarModel":"AMG GT"},{"CarMake":"Mercedes","CarModel":"C-Class"},{"CarMake":"Mercedes","CarModel":"CLA"},{"CarMake":"Mercedes","CarModel":"E-Class"},{"CarMake":"Mercedes","CarModel":"GLA"},{"CarMake":"Mercedes","CarModel":"GLB"},{"CarMake":"Mercedes","CarModel":"GLC"},{"CarMake":"Mercedes","CarModel":"GLE"},{"CarMake":"Mercedes","CarModel":"GLE Coupe"},{"CarMake":"Mercedes","CarModel":"GLS"},{"CarMake":"Mercedes","CarModel":"M-Class"},{"CarMake":"Mercedes","CarModel":"S-Class"},{"CarMake":"Nissan","CarModel":"370Z"},{"CarMake":"Nissan","CarModel":"Altima"},{"CarMake":"Nissan","CarModel":"Armada"},{"CarMake":"Nissan","CarModel":"Cube"},{"CarMake":"Nissan","CarModel":"Juke"},{"CarMake":"Nissan","CarModel":"Maxima"},{"CarMake":"Nissan","CarModel":"Murano"},{"CarMake":"Nissan","CarModel":"Pathfinder"},{"CarMake":"Nissan","CarModel":"Rogue"},{"CarMake":"Nissan","CarModel":"Sentra"},{"CarMake":"Nissan","CarModel":"Versa"},{"CarMake":"Toyota","CarModel":"4Runner"},{"CarMake":"Toyota","CarModel":"Avalon"},{"CarMake":"Toyota","CarModel":"Camry"},{"CarMake":"Toyota","CarModel":"Corolla"},{"CarMake":"Toyota","CarModel":"Highlander"},{"CarMake":"Toyota","CarModel":"Land Cruiser"},{"CarMake":"Toyota","CarModel":"Prius"},{"CarMake":"Toyota","CarModel":"RAV4"},{"CarMake":"Toyota","CarModel":"Sienna"},{"CarMake":"Toyota","CarModel":"Tacoma"},{"CarMake":"Toyota","CarModel":"Tundra"},{"CarMake":"Toyota","CarModel":"Yaris"}]}
+
+TASK 16 — Sentiment analysis cURL/output (2 points)
+Command (run the sentiment service):
+curl.exe "http://127.0.0.1:5050/analyze/Fantastic%20services"
+
+Verified response:
+{"sentiment": "positive"}
+
+TASK 17 — Pre-login dealers screenshot (1 point)
+Required filename: get_dealers.png (or get_dealers.jpeg)
+Status: Screenshot not captured. Open the running app before login, show its dealer
+list, and save a genuine browser screenshot with this filename.
+
+TASK 18 — Logged-in dealers screenshot (2 points)
+Required filename: get_dealers_loggedin.png (or .jpeg)
+Status: Screenshot not captured. Log in, open the dealer list, and ensure the
+Review Dealer option, logged-in username, and browser address bar are visible.
+
+TASK 19 — Kansas filter screenshot (2 points)
+Required filename: dealersbystate.png (or dealersbystate.jpeg)
+Status: Screenshot not captured. Filter for Kansas and include the endpoint in
+the browser address bar.
+
+TASK 20 — Dealer detail and reviews screenshot (1 point)
+Required filename: dealer_id_reviews.png (or .jpeg)
+Status: Screenshot not captured. Open a dealer with seeded reviews and include
+the dealer endpoint in the browser address bar.
+
+TASK 21 — Review form before submission screenshot (1 point)
+Required filename: dealership_review_submission.png (or .jpeg)
+Status: Screenshot not captured. Fill the review form and capture it before
+clicking Post Review.
+
+TASK 22 — Posted review screenshot (2 points)
+Required filename: added_review.png (or .jpeg)
+Status: Screenshot not captured. Submit a review and capture the resulting
+dealer review page.
+
+TASK 23 — Successful GitHub Actions run output (3 points)
+Workflow source: .github/workflows/ci.yml
+The workflow runs on push and pull request. It installs requirements, builds
+React, checks Django, collects static files, runs Django tests, and checks the
+Node API syntax.
+
+Status: No GitHub Actions workflows or runs were present when checked, and the
+new workflow is not pushed. Push the changes, wait for the workflow to succeed,
+then paste the actual run/job log. Do not present this description as a run log.
+
+TASK 24 — Django deployment URL (1 point)
+Status: Not deployed. No deployment URL is available; deployment requires your
+cloud account and credentials. After deployment, paste the public application
+URL here: [ADD YOUR DEPLOYMENT URL]
+
+TASK 25 — Deployed landing-page screenshot (2 points)
+Required filename: deployed_landingpage.png (or .jpeg)
+Status: Not captured. Capture the real deployed app's landing page.
+
+TASK 26 — Deployed logged-in screenshot (2 points)
+Required filename: deployed_loggedin.png (or .jpeg)
+Status: Not captured. Capture the real deployed app with the logged-in username
+visible.
+
+TASK 27 — Deployed dealer details screenshot (2 points)
+Required filename: deployed_dealer_detail.png (or .jpeg)
+Status: Not captured. Capture a dealer detail page opened through your public
+deployment.
+
+TASK 28 — Deployed posted-review screenshot (2 points)
+Required filename: deployed_add_review.png (or .jpeg)
+Status: Not captured. Capture the posted review in your public deployment.
+
+LOCAL VERIFICATION PERFORMED
+- Django system check: passed.
+- Django tests: 6 passed.
+- React production build: passed (existing Autoprefixer/Browserslist warnings).
+- React clean install from package lock: passed.
+- Django routes /, /about, /contact, /dealer/2, /postreview/2, /login, /register
+  and /djangoapp/get_cars: HTTP 200 locally.
+- Car model endpoint: 58 unique make/model pairs returned.
+- Sentiment analyzer: "Fantastic services" returned positive.
+- Docker-based MongoDB/dealership API, GitHub Actions execution, screenshots,
+  and cloud deployment: not verified/not available.
+
+NEXT STEPS TO FINISH ALL POINTS
+1. Push the working-tree changes to the public GitHub repository so the
+   implementation and CI workflow are visible.
+2. Install/start Docker Desktop, then from server run:
+   $env:DJANGO_SECRET_KEY = "use-a-new-private-secret"
+   docker compose up --build
+3. Create an application account in Register. For the admin screenshot, create
+   a Django superuser with `docker compose exec web python manage.py createsuperuser`.
+4. Run the cURL commands above against the running app and replace any unavailable
+   output with the actual successful response.
+5. Capture each requested screenshot using the exact filenames above.
+6. Configure and perform a cloud deployment, then record its real URL and capture
+   the four deployed screenshots.
+7. Push the workflow to GitHub and paste the actual successful Actions job output.

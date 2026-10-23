@@ -1,0 +1,48 @@
+services:
+  mongo_db:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ./database
+    restart: unless-stopped
+    environment:
+      MONGODB_URI: mongodb://mongo_db:27017/
+    depends_on:
+      mongo_db:
+        condition: service_healthy
+
+  sentiment:
+    build: ./djangoapp/microservices
+    restart: unless-stopped
+    environment:
+      FLASK_APP: app.py
+
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_DEBUG: "false"
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in the shell before starting}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1}
+      SQLITE_PATH: /data/db.sqlite3
+      backend_url: http://api:3030
+      sentiment_analyzer_url: http://sentiment:5000
+    volumes:
+      - django_data:/data
+    depends_on:
+      - api
+      - sentiment
+
+volumes:
+  django_data:
+  mongo_data:
